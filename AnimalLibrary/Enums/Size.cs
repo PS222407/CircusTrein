@@ -3,6 +3,6 @@
 public enum Size
 {
     Small = 1,
-    Middle = 3,
+    Medium = 3,
     Large = 5,
 }

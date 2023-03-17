@@ -2,6 +2,6 @@
 
 public enum DietTypes
 {
-    Omnivore,
+    Herbivore,
     Carnivore,
 }
