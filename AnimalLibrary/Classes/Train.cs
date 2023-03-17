@@ -1,4 +1,6 @@
-﻿namespace AnimalLibrary.Classes;
+﻿using System.Diagnostics;
+
+namespace AnimalLibrary.Classes;
 
 public class Train
 {
@@ -8,5 +10,10 @@ public class Train
     public void AddAnimal(Animal animal)
     {
         _animals.Add(animal);
+    }
+
+    public void CalculateWagons()
+    {
+        Debug.Write(_animals);
     }
 }

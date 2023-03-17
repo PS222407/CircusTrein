@@ -29,7 +29,7 @@ namespace CircusTrein
             _train = new Train();
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
         {
             Animal animal = new Animal();
             _train.AddAnimal(animal);
@@ -39,8 +39,14 @@ namespace CircusTrein
 
         private void AddAnimalToListBox(Animal animal)
         {
-            string displayAnimalString = "id = " + animal.Id + "; Height = " + animal.Size + "; DietType = " + animal.DietTypes.ToString() + "; points = " + (int)animal.Size + ";";
+            string displayAnimalString = $"id = {animal.Id}; Height = {animal.Size}; DietType = {animal.DietTypes}; points = {(int)animal.Size};";
             ListBoxAnimals.Items.Add(displayAnimalString);
+        }
+
+        private void ButtonBase_OnClick_Optimize_Train_Wagons(object sender, RoutedEventArgs e)
+        {
+            _train.CalculateWagons();
+            MessageBox.Show("Calculating wagons");
         }
     }
 }

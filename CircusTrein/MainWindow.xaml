@@ -16,6 +16,14 @@
         
         <ListBox Grid.Row="1" x:Name="ListBoxAnimals"></ListBox>
 
-        <Button Grid.Row="2" Click="ButtonBase_OnClick">Add animal</Button>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Click="ButtonBase_OnClick_Add_Animal">Add animal</Button>
+            <Button Grid.Column="1" Click="ButtonBase_OnClick_Optimize_Train_Wagons">Calculate wagons</Button>
+        </Grid>
     </Grid>
 </Window>
