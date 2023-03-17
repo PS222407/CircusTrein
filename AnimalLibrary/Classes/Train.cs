@@ -15,10 +15,11 @@ public class Train
     }
 
     private List<Animal> _animals = new List<Animal>();
-    
-    public void AddAnimal(Animal animal)
+
+    public List<Animal> Animals
     {
-        _animals.Add(animal);
+        get => _animals;
+        set => _animals = value;
     }
 
     public void CalculateWagons()
@@ -44,7 +45,6 @@ public class Train
     
     private void FillCarnivoreWagonsWithHerbivores()
     {
-        List<Animal> animals = _animals.OrderByDescending(a=> (int)a.Size).ToList();
         List<Wagon> wagons = _wagons.OrderByDescending(w => (int)w.Animals[0].Size).ToList();
 
         foreach (Wagon wagon in wagons)
@@ -53,7 +53,8 @@ public class Train
             {
                 continue;
             }
-
+            
+            List<Animal> animals = _animals.OrderByDescending(a=> (int)a.Size).ToList();
             Size carnivoreSize = wagon.Animals[0].Size;
             
             foreach (Animal herbivore in animals)
@@ -73,20 +74,34 @@ public class Train
     private void AssignRemainingHerbivoresToNewWagons()
     {
         Wagon wagon = new Wagon();
+
         foreach (Animal herbivore in _animals.ToList())
         {
+            int index = _animals.IndexOf(herbivore);
+            bool isLastIteration = index == _animals.Count - 1;
+            
             bool willFit = wagon.Points + (int)herbivore.Size <= Wagon.MaxAnimalPoints;
                 
             if (willFit)
             {
                 wagon.AddAnimal(herbivore);
                 _animals.Remove(herbivore);
+
+                if (isLastIteration)
+                {
+                    _wagons.Add(wagon);
+                }
             }
             else
             {
                 _wagons.Add(wagon);
-                wagon = new Wagon();
+                wagon = new Wagon()
+                    ;
+                wagon.AddAnimal(herbivore);
+                _animals.Remove(herbivore);
             }
         }
+
+        Debug.Write(_animals);
     }
 }

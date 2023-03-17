@@ -22,28 +22,26 @@ namespace CircusTrein
     public partial class MainWindow : Window
     {
         private Train _train;
+        private Queue _queue;
         
         public MainWindow()
         {
             InitializeComponent();
-            _train = new Train();
+            
+            _queue = new Queue();
         }
 
         private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
         {
             Animal animal = new Animal();
-            _train.AddAnimal(animal);
-            
-            AddAnimalToListBox(animal);
-        }
-
-        private void AddAnimalToListBox(Animal animal)
-        {
+            _queue.Animals.Add(animal);
             ListBoxAnimals.Items.Add(animal);
         }
 
         private void ButtonBase_OnClick_Calculate_Train_Wagons(object sender, RoutedEventArgs e)
-        { 
+        {
+            _train = new Train();
+            _train.Animals = new List<Animal>(_queue.Animals);
             _train.CalculateWagons();
 
             ListBoxWagons.Items.Clear();
