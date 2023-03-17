@@ -35,13 +35,14 @@ public partial class MainWindow : Window
     {
         Animal animal = new Animal();
         _queue.AddAnimal(animal);
+        
         ListBoxAnimals.Items.Add(animal);
     }
 
     private void ButtonBase_OnClick_Calculate_Train_Wagons(object sender, RoutedEventArgs e)
     {
         _train = new Train();
-        _train.AddAnimals(_queue.Animals);
+        _train.AddQueue(_queue);
         _train.CalculateWagons();
 
         ListBoxWagons.Items.Clear();

@@ -1,34 +1,31 @@
-﻿using System.Linq;
-
-namespace AnimalLibrary.Classes;
+﻿namespace AnimalLibrary.Classes;
 
 public class Train
 {
-    public List<Wagon> Wagons { get; private set; } = new();
-
-    public List<Animal> Animals { get; private set; } = new();
-
-    public void AddAnimals(List<Animal> animals)
+    private Queue _queue;
+    public List<Wagon> Wagons { get; } = new();
+    
+    public void AddQueue(Queue queue)
     {
-        Animals = new List<Animal>(animals);
+        _queue = new Queue(queue.Animals);
     }
 
     public void CalculateWagons()
     {
         Wagon wagon = new Wagon();
-        
-        foreach (Animal animal in Animals.ToList())
+
+        foreach (Animal animal in _queue.Animals.ToList())
         {
             if (wagon.IsRoomForAnimal(animal) && wagon.IsSafeForAnimal(animal))
             {
                 wagon.AddAnimal(animal);
-                Animals.Remove(animal);
+                _queue.RemoveAnimal(animal);
             }
         }
-        
+
         Wagons.Add(wagon);
 
-        if (Animals.Count != 0)
+        if (_queue.Animals.Count != 0)
         {
             CalculateWagons();
         }

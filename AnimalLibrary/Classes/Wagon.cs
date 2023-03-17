@@ -5,9 +5,9 @@ public class Wagon
     public const int MaxAnimalPoints = 10;
 
     private static int _nextId;
-    public int Id { get; private set; }
+    public int Id { get; }
 
-    public List<Animal> Animals { get; private set; } = new();
+    public List<Animal> Animals { get; } = new();
 
     public int Points
     {

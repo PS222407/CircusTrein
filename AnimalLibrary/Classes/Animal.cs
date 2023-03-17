@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using AnimalLibrary.Enums;
+﻿using AnimalLibrary.Enums;
 
 namespace AnimalLibrary.Classes;
 
@@ -7,7 +6,7 @@ public class Animal
 {
     static int _nextId;
 
-    public int Id { get; private set;}
+    public int Id { get; }
 
     public DietTypes DietType { get; private set; }
 
