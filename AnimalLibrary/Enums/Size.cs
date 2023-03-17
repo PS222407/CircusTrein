@@ -1,6 +1,6 @@
 ﻿namespace AnimalLibrary.Enums;
 
-public enum Height
+public enum Size
 {
     Small = 1,
     Middle = 3,

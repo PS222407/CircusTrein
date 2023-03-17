@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AnimalLibrary.Classes;
 
 namespace CircusTrein
 {
@@ -20,9 +21,26 @@ namespace CircusTrein
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Train _train;
+        
         public MainWindow()
         {
             InitializeComponent();
+            _train = new Train();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Animal animal = new Animal();
+            _train.AddAnimal(animal);
+            
+            AddAnimalToListBox(animal);
+        }
+
+        private void AddAnimalToListBox(Animal animal)
+        {
+            string displayAnimalString = "id = " + animal.Id + "; Height = " + animal.Size + "; DietType = " + animal.DietTypes.ToString() + "; points = " + (int)animal.Size + ";";
+            ListBoxAnimals.Items.Add(displayAnimalString);
         }
     }
 }

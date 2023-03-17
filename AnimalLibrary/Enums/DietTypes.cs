@@ -1,6 +1,6 @@
 ﻿namespace AnimalLibrary.Enums;
 
-public enum EatingType
+public enum DietTypes
 {
     Omnivore,
     Carnivore,
