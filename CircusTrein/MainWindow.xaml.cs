@@ -14,50 +14,49 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AnimalLibrary.Classes;
 
-namespace CircusTrein
+namespace CircusTrein;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private Train _train;
+    private readonly Queue _queue;
+
+    public MainWindow()
     {
-        private Train _train;
-        private Queue _queue;
-        
-        public MainWindow()
-        {
-            InitializeComponent();
-            
-            _queue = new Queue();
-        }
+        InitializeComponent();
 
-        private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
-        {
-            Animal animal = new Animal();
-            _queue.Animals.Add(animal);
-            ListBoxAnimals.Items.Add(animal);
-        }
+        _queue = new Queue();
+    }
 
-        private void ButtonBase_OnClick_Calculate_Train_Wagons(object sender, RoutedEventArgs e)
-        {
-            _train = new Train();
-            _train.Animals = new List<Animal>(_queue.Animals);
-            _train.CalculateWagons();
+    private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
+    {
+        Animal animal = new Animal();
+        _queue.AddAnimal(animal);
+        ListBoxAnimals.Items.Add(animal);
+    }
 
-            ListBoxWagons.Items.Clear();
-            
-            foreach (Wagon wagon in _train.Wagons)
+    private void ButtonBase_OnClick_Calculate_Train_Wagons(object sender, RoutedEventArgs e)
+    {
+        _train = new Train();
+        _train.AddAnimals(_queue.Animals);
+        _train.CalculateWagons();
+
+        ListBoxWagons.Items.Clear();
+
+        foreach (Wagon wagon in _train.Wagons)
+        {
+            ListBox wagonUi = new ListBox();
+
+            wagonUi.Items.Add(wagon);
+            foreach (Animal animal in wagon.Animals)
             {
-                ListBox WagonUI = new ListBox();
-                
-                WagonUI.Items.Add(wagon);
-                foreach (Animal animal in wagon.Animals)
-                {
-                    WagonUI.Items.Add(animal);
-                }
-
-                ListBoxWagons.Items.Add(WagonUI);
+                wagonUi.Items.Add(animal);
             }
+
+            ListBoxWagons.Items.Add(wagonUi);
         }
     }
 }

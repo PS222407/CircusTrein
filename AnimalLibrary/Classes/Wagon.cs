@@ -3,36 +3,43 @@
 public class Wagon
 {
     public const int MaxAnimalPoints = 10;
-    
-    static int nextId;
-    
-    public int Id { get; set;}
-    
-    private List<Animal> _animals = new List<Animal>();
-    
-    public List<Animal> Animals
-    {
-        get => _animals;
-        set => _animals = value;
-    }
 
-    private int _points = 0;
+    private static int _nextId;
+    public int Id { get; private set; }
+
+    public List<Animal> Animals { get; private set; } = new();
 
     public int Points
     {
-        get => _points;
-        set => _points = value;
-    }
-
-    public void AddAnimal(Animal animal)
-    {
-        _animals.Add(animal);
-        _points += (int)animal.Size;
+        get { return Animals.Sum(a => (int)a.Size); }
     }
 
     public Wagon()
     {
-        Id = Interlocked.Increment(ref nextId);
+        Id = Interlocked.Increment(ref _nextId);
+    }
+    
+    public void AddAnimal(Animal animal)
+    {
+        Animals.Add(animal);
+    }
+
+    public bool IsRoomForAnimal(Animal animal)
+    {
+        return Points + (int)animal.Size <= MaxAnimalPoints;
+    }
+
+    public bool IsSafeForAnimal(Animal newAnimal)
+    {
+        foreach (Animal animal in Animals)
+        {
+            if (animal.HasConflictWith(newAnimal))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
     
     public override string ToString()

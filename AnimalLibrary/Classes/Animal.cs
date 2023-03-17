@@ -1,38 +1,47 @@
-﻿using AnimalLibrary.Enums;
+﻿using System.Diagnostics;
+using AnimalLibrary.Enums;
 
 namespace AnimalLibrary.Classes;
 
 public class Animal
 {
-    static int nextId;
-    
-    public int Id { get; set;}
-    
-    private DietTypes _dietType;
-    public DietTypes DietType
-    {
-        get => _dietType;
-        set => _dietType = value;
-    }
+    static int _nextId;
 
-    private Size _size;
-    public Size Size
-    {
-        get => _size;
-        set => _size = value;
-    }
+    public int Id { get; private set;}
+
+    public DietTypes DietType { get; private set; }
+
+    public Size Size { get; private set; }
 
     public Animal()
     {
-        Id = Interlocked.Increment(ref nextId);
-        
+        Id = Interlocked.Increment(ref _nextId);
+        AssignRandomProperties();
+    }
+
+    private void AssignRandomProperties()
+    {
         Random random = new Random();
         
         Array dietTypes = Enum.GetValues(typeof(DietTypes));
         Array sizeTypes = Enum.GetValues(typeof(Size));
         
-        _dietType = (DietTypes)dietTypes.GetValue(random.Next(dietTypes.Length))!;
-        _size = (Size)sizeTypes.GetValue(random.Next(sizeTypes.Length))!;
+        DietType = (DietTypes)dietTypes.GetValue(random.Next(dietTypes.Length))!;
+        Size = (Size)sizeTypes.GetValue(random.Next(sizeTypes.Length))!;
+    }
+
+    public bool HasConflictWith(Animal animal)
+    {
+        if (animal.DietType == DietTypes.Carnivore && (int)animal.Size >= (int)Size)
+        {
+            return true;
+        }
+        if (DietType == DietTypes.Carnivore && (int)Size >= (int)animal.Size)
+        {
+            return true;
+        }
+
+        return false;
     }
     
     public override string ToString()

@@ -2,11 +2,10 @@
 
 public class Queue
 {
-    private List<Animal> _animals = new List<Animal>();
+    public List<Animal> Animals { get; private set; } = new();
 
-    public List<Animal> Animals
+    public void AddAnimal(Animal animal)
     {
-        get => _animals;
-        set => _animals = value;
+        Animals.Add(animal);
     }
 }
