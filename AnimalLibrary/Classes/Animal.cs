@@ -4,11 +4,15 @@ namespace AnimalLibrary.Classes;
 
 public class Animal
 {
-    private DietTypes _dietTypes;
-    public DietTypes DietTypes
+    static int nextId;
+    
+    public int Id { get; set;}
+    
+    private DietTypes _dietType;
+    public DietTypes DietType
     {
-        get => _dietTypes;
-        set => _dietTypes = value;
+        get => _dietType;
+        set => _dietType = value;
     }
 
     private Size _size;
@@ -17,10 +21,6 @@ public class Animal
         get => _size;
         set => _size = value;
     }
-
-    static int nextId;
-    
-    public int Id { get; set;}
 
     public Animal()
     {
@@ -31,7 +31,12 @@ public class Animal
         Array dietTypes = Enum.GetValues(typeof(DietTypes));
         Array sizeTypes = Enum.GetValues(typeof(Size));
         
-        _dietTypes = (DietTypes)dietTypes.GetValue(random.Next(dietTypes.Length))!;
+        _dietType = (DietTypes)dietTypes.GetValue(random.Next(dietTypes.Length))!;
         _size = (Size)sizeTypes.GetValue(random.Next(sizeTypes.Length))!;
+    }
+    
+    public override string ToString()
+    {
+        return $"id = {Id}; Size = {Size}; DietType = {DietType}; points = {(int)Size};";
     }
 }
