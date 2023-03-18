@@ -20,7 +20,7 @@ public class Wagon : IWagon
     {
         Id = Interlocked.Increment(ref _nextId);
     }
-    
+
     public void AddAnimal(Animal animal)
     {
         Animals.Add(animal);
@@ -43,7 +43,7 @@ public class Wagon : IWagon
 
         return true;
     }
-    
+
     public override string ToString()
     {
         return $"Wagon ID: {Id}; Animal count = {Animals.Count}; Points = {Points};";

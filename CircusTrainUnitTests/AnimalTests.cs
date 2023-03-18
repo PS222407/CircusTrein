@@ -18,7 +18,7 @@ public class AnimalTests
         Animal animal = new Animal();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
-        
+
         // Act
         bool result = animal.HasConflictWith(animal);
 
@@ -36,7 +36,7 @@ public class AnimalTests
         Animal animal2 = new Animal();
         animal2.SetDietType(DietTypes.Herbivore);
         animal2.SetSize(Size.Large);
-        
+
         // Act
         bool result = animal.HasConflictWith(animal2);
 

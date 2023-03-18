@@ -7,7 +7,7 @@ public class Tests
 {
     private Train _train;
     private Queue _queue;
-    
+
     [SetUp]
     public void Setup()
     {
@@ -24,16 +24,17 @@ public class Tests
             animal.AssignRandomProperties();
             _queue.AddAnimal(animal);
         }
-        
+
         _train = new Train();
         _train.AddQueue(_queue);
-        
+
         // Act
         List<Wagon> wagons = _train.CalculateWagons();
         if (wagons.Count == 0)
         {
             Assert.Fail();
         }
+
         foreach (Wagon wagon in wagons)
         {
             if (wagon.Animals.Count(a => a.DietType == DietTypes.Carnivore) > 1)

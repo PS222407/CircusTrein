@@ -7,7 +7,7 @@ namespace CircusTrainUnitTests;
 public class WagonTests
 {
     private Wagon _wagon;
-    
+
     [SetUp]
     public void Setup()
     {
@@ -22,14 +22,14 @@ public class WagonTests
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
         _wagon.AddAnimal(animal);
-        
+
         // Act
         bool result = _wagon.IsRoomForAnimal(animal);
 
         // Assert
         Assert.That(result, Is.EqualTo(true));
     }
-    
+
     [Test]
     public void IsRoomForAnimal_ReturnsFalse()
     {
@@ -39,7 +39,7 @@ public class WagonTests
         animal.SetSize(Size.Large);
         _wagon.AddAnimal(animal);
         _wagon.AddAnimal(animal);
-        
+
         // Act
         bool result = _wagon.IsRoomForAnimal(animal);
 
@@ -65,7 +65,7 @@ public class WagonTests
         // Assert
         Assert.That(result, Is.EqualTo(true));
     }
-    
+
     [Test]
     public void IsSafeForAnimal_ReturnsFalse()
     {
@@ -74,7 +74,7 @@ public class WagonTests
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
         _wagon.AddAnimal(animal);
-        
+
         // Act
         bool result = _wagon.IsSafeForAnimal(animal);
 

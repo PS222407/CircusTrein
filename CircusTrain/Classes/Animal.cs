@@ -21,10 +21,10 @@ public class Animal : IAnimal
     public void AssignRandomProperties()
     {
         Random random = new Random();
-        
+
         Array dietTypes = Enum.GetValues(typeof(DietTypes));
         Array sizeTypes = Enum.GetValues(typeof(Size));
-        
+
         DietType = (DietTypes)dietTypes.GetValue(random.Next(dietTypes.Length))!;
         Size = (Size)sizeTypes.GetValue(random.Next(sizeTypes.Length))!;
     }
@@ -33,6 +33,7 @@ public class Animal : IAnimal
     {
         DietType = dietType;
     }
+
     public void SetSize(Size size)
     {
         Size = size;
@@ -44,6 +45,7 @@ public class Animal : IAnimal
         {
             return true;
         }
+
         if (DietType == DietTypes.Carnivore && (int)Size >= (int)animal.Size)
         {
             return true;
@@ -51,7 +53,7 @@ public class Animal : IAnimal
 
         return false;
     }
-    
+
     public override string ToString()
     {
         return $"id = {Id}; Size = {Size}; DietType = {DietType}; points = {(int)Size};";

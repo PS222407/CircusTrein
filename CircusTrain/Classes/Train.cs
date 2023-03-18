@@ -4,7 +4,7 @@ public class Train
 {
     private Queue _queue;
     public List<Wagon> Wagons { get; } = new();
-    
+
     public void AddQueue(Queue queue)
     {
         _queue = new Queue(queue.Animals);
@@ -29,7 +29,7 @@ public class Train
         {
             return CalculateWagons();
         }
-        
+
         return Wagons;
     }
 }
