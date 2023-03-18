@@ -27,7 +27,7 @@ public class Train
 
         if (_queue.Animals.Count != 0)
         {
-            CalculateWagons();
+            return CalculateWagons();
         }
         
         return Wagons;
