@@ -9,13 +9,22 @@ public class Animal : IAnimal
 
     public int Id { get; }
 
-    public DietTypes DietType { get; private set; }
+    public DietTypes? DietType { get; private set; }
 
-    public Size Size { get; private set; }
+    public Size? Size { get; private set; }
 
-    public Animal()
+    public Animal(Size? size = null, DietTypes? dietType = null)
     {
         Id = Interlocked.Increment(ref _nextId);
+
+        if (size != null)
+        {
+            Size = size;
+        }
+        if (dietType != null)
+        {
+            DietType = dietType;
+        }
     }
 
     public void AssignRandomProperties()

@@ -36,7 +36,7 @@ public partial class MainWindow : Window
         Animal animal = new Animal();
         animal.AssignRandomProperties();
         _queue.AddAnimal(animal);
-
+        
         ListBoxAnimals.Items.Add(animal);
     }
 

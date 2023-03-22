@@ -1,4 +1,6 @@
-﻿namespace CircusTrain.Classes;
+﻿using CircusTrain.Enums;
+
+namespace CircusTrain.Classes;
 
 public class Train
 {
@@ -14,7 +16,11 @@ public class Train
     {
         Wagon wagon = new Wagon();
 
-        foreach (Animal animal in _queue.Animals.ToList())
+        List<Animal> carnivores = _queue.Animals.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
+        List<Animal> herbivores = _queue.Animals.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
+        List<Animal> animals = carnivores.Concat(herbivores).ToList();
+
+        foreach (Animal animal in animals)
         {
             if (wagon.IsRoomForAnimal(animal) && wagon.IsSafeForAnimal(animal))
             {
