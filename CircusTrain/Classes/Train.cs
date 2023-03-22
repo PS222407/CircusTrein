@@ -11,31 +11,78 @@ public class Train
     {
         _queue = new Queue(queue.Animals);
     }
-
+    
     public List<Wagon> CalculateWagons()
     {
-        Wagon wagon = new Wagon();
+        List<Wagon> wagons1 = CalculateWagonsStartsWithCarnivores();
+        List<Wagon> wagons2 = CalculateWagonsStartsWithHerbivores();
 
-        List<Animal> carnivores = _queue.Animals.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
-        List<Animal> herbivores = _queue.Animals.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
-        List<Animal> animals = carnivores.Concat(herbivores).ToList();
+        return wagons1.Count > wagons2.Count ? wagons2 : wagons1;
+    }
 
-        foreach (Animal animal in animals)
+    private List<Wagon> CalculateWagonsStartsWithCarnivores()
+    {
+        List<Wagon> wagons = new List<Wagon>();
+        Queue queue = new Queue(_queue.Animals);
+
+        while (true)
         {
-            if (wagon.IsRoomForAnimal(animal) && wagon.IsSafeForAnimal(animal))
+            Wagon wagon = new Wagon();
+
+            List<Animal> carnivores = queue.Animals.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
+            List<Animal> herbivores = queue.Animals.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
+            List<Animal> animals = carnivores.Concat(herbivores).ToList();
+
+            foreach (Animal animal in animals)
             {
-                wagon.AddAnimal(animal);
-                _queue.RemoveAnimal(animal);
+                if (wagon.IsRoomForAnimal(animal) && wagon.IsSafeForAnimal(animal))
+                {
+                    wagon.AddAnimal(animal);
+                    queue.RemoveAnimal(animal);
+                }
             }
+
+            wagons.Add(wagon);
+
+            if (queue.Animals.Count != 0)
+            {
+                continue;
+            }
+
+            return wagons;
         }
+    }
 
-        Wagons.Add(wagon);
+    private List<Wagon> CalculateWagonsStartsWithHerbivores()
+    {
+        List<Wagon> wagons = new List<Wagon>();
+        Queue queue = new Queue(_queue.Animals);
 
-        if (_queue.Animals.Count != 0)
+        while (true)
         {
-            return CalculateWagons();
-        }
+            Wagon wagon = new Wagon();
 
-        return Wagons;
+            List<Animal> carnivores = queue.Animals.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
+            List<Animal> herbivores = queue.Animals.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
+            List<Animal> animals = herbivores.Concat(carnivores).ToList();
+
+            foreach (Animal animal in animals)
+            {
+                if (wagon.IsRoomForAnimal(animal) && wagon.IsSafeForAnimal(animal))
+                {
+                    wagon.AddAnimal(animal);
+                    queue.RemoveAnimal(animal);
+                }
+            }
+
+            wagons.Add(wagon);
+
+            if (queue.Animals.Count != 0)
+            {
+                continue;
+            }
+
+            return wagons;
+        }
     }
 }

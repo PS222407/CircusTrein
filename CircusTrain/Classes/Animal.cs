@@ -50,12 +50,12 @@ public class Animal : IAnimal
 
     public bool HasConflictWith(Animal animal)
     {
-        if (animal.DietType == DietTypes.Carnivore && (int)animal.Size >= (int)Size)
+        if (animal.DietType == DietTypes.Carnivore && (int)animal.Size! >= (int)Size!)
         {
             return true;
         }
 
-        if (DietType == DietTypes.Carnivore && (int)Size >= (int)animal.Size)
+        if (DietType == DietTypes.Carnivore && (int)Size! >= (int)animal.Size!)
         {
             return true;
         }
