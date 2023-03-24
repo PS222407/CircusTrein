@@ -7,7 +7,7 @@ public class Animal : IAnimal
 {
     static int _nextId;
 
-    public int Id { get; }
+    private int Id { get; }
 
     public DietTypes? DietType { get; private set; }
 
