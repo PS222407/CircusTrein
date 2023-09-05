@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CircusTrain.Classes.Animal" BaseTypeListCollapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAhAAEAgAIAAAAAIAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Classes\Animal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="CircusTrain.Classes.Queue">
+    <Position X="10" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAQAAARAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Classes\Queue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircusTrain.Classes.Train">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIACAAAAAEAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Train.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CircusTrain.Classes.Wagon" BaseTypeListCollapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAIAAgAAEAAAQAAAAAIAAAMAAAAAEAEAAAAA=</HashCode>
+      <FileName>Classes\Wagon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="CircusTrain.Interfaces.IAnimal">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAnimal.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CircusTrain.Interfaces.IWagon">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAEAAAAA=</HashCode>
+      <FileName>Interfaces\IWagon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CircusTrain.Enums.DietTypes">
+    <Position X="2" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\DietTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CircusTrain.Enums.Size">
+    <Position X="2" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Enums\Size.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -8,12 +8,12 @@ public class Train
     {
         _queue = new Queue(queue.Animals);
     }
-    
+
     public List<Wagon> CalculateWagons()
     {
         _queue.SortByLargeCarnivores();
         List<Wagon> wagons1 = GetOptimizedWagons(_queue.Animals);
-        
+
         _queue.SortByLargeHerbivores();
         List<Wagon> wagons2 = GetOptimizedWagons(_queue.Animals);
 
@@ -28,7 +28,7 @@ public class Train
         while (animals.Count != 0)
         {
             Wagon wagon = new Wagon();
-            
+
             foreach (Animal animal in animals.ToList())
             {
                 if (wagon.TryAddAnimal(animal))
@@ -41,5 +41,5 @@ public class Train
         }
 
         return wagons;
-    } 
+    }
 }

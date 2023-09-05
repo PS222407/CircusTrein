@@ -7,9 +7,11 @@ public class Wagon : IWagon
     private const int MaxAnimalPoints = 10;
 
     private static int _nextId;
+    
     private int Id { get; }
 
     public IReadOnlyList<Animal> Animals => _animals;
+    
     private List<Animal> _animals = new();
 
     private int Points
