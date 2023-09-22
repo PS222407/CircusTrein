@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using CircusTrain.Classes;
-using CircusTrain.Enums;
-using Size = CircusTrain.Enums.Size;
 
 namespace CircusTrein;
 
@@ -24,20 +11,19 @@ namespace CircusTrein;
 public partial class MainWindow : Window
 {
     private Train _train;
-    private readonly Queue _queue;
+
+    private List<Animal> _animals = new();
 
     public MainWindow()
     {
         InitializeComponent();
-
-        _queue = new Queue();
     }
 
     private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
     {
         Animal animal = new Animal();
         animal.AssignRandomProperties();
-        _queue.AddAnimal(animal);
+        _animals.Add(animal);
         
         ListBoxAnimals.Items.Add(animal);
     }
@@ -45,7 +31,7 @@ public partial class MainWindow : Window
     private void ButtonBase_OnClick_Calculate_Train_Wagons(object sender, RoutedEventArgs e)
     {
         _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(_animals);
         List<Wagon> wagons = _train.CalculateWagons();
 
         ListBoxWagons.Items.Clear();

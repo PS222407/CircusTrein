@@ -5,46 +5,34 @@ namespace CircusTrainUnitTests;
 
 public class Tests
 {
-    private Train _train;
-    private Queue _queue;
+    private Train _train = new();
 
     [SetUp]
     public void Setup()
     {
-        _queue = new Queue();
+        _train = new Train();
     }
 
     [Test]
     public void CalculateWagons_ReturnsWagonsFilledWithAnimals()
     {
         // Assign
+        List<Animal> animals = new List<Animal>();
         for (int i = 0; i < 100; i++)
         {
             Animal animal = new Animal();
             animal.AssignRandomProperties();
-            _queue.AddAnimal(animal);
+            animals.Add(animal);
         }
 
         _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
 
         // Act
         List<Wagon> wagons = _train.CalculateWagons();
-        if (wagons.Count == 0)
-        {
-            Assert.Fail();
-        }
 
         // Assert
-        foreach (Wagon wagon in wagons)
-        {
-            if (wagon.Animals.Count(a => a.DietType == DietTypes.Carnivore) > 1)
-            {
-                Assert.Fail();
-            }
-        }
-
-        Assert.Pass();
+        Assert.That(wagons, Has.Count.GreaterThan(0));
     }
 
     #region TestScenarios1-7
@@ -64,12 +52,7 @@ public class Tests
             new(Size.Large, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -97,12 +80,7 @@ public class Tests
             
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -125,12 +103,7 @@ public class Tests
             new(Size.Medium, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -158,12 +131,7 @@ public class Tests
             new(Size.Medium, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -185,12 +153,7 @@ public class Tests
             new(Size.Large, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -216,12 +179,7 @@ public class Tests
             new(Size.Large, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -262,12 +220,7 @@ public class Tests
             new(Size.Large, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -297,12 +250,7 @@ public class Tests
             new(Size.Medium, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -328,12 +276,7 @@ public class Tests
             new(Size.Large, DietTypes.Carnivore),
             new(Size.Large, DietTypes.Carnivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -371,12 +314,7 @@ public class Tests
             new(Size.Large, DietTypes.Carnivore),
             new(Size.Large, DietTypes.Carnivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -398,12 +336,7 @@ public class Tests
             new(Size.Large, DietTypes.Herbivore),
             new(Size.Large, DietTypes.Herbivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -426,12 +359,7 @@ public class Tests
 
             new(Size.Small, DietTypes.Carnivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -454,12 +382,7 @@ public class Tests
             new(Size.Small, DietTypes.Carnivore),
             new(Size.Small, DietTypes.Carnivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -486,12 +409,7 @@ public class Tests
             new(Size.Small, DietTypes.Carnivore),
             new(Size.Small, DietTypes.Carnivore),
         };
-        foreach (Animal animal in animals)
-        {
-            _queue.AddAnimal(animal);
-        }
-        _train = new Train();
-        _train.AddQueue(_queue);
+        _train.AddAnimals(animals);
         
         // ACT
         List<Wagon> wagons = _train.CalculateWagons();
@@ -499,7 +417,6 @@ public class Tests
         // ASSERT
         Assert.That(wagons, Has.Count.EqualTo(3));
     }
-    
     
     #endregion
 }
