@@ -1,6 +1,5 @@
 ﻿using CircusTrain.Classes;
 using CircusTrain.Enums;
-using NUnit.Framework;
 
 namespace CircusTrainUnitTests;
 

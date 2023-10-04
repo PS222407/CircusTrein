@@ -24,7 +24,7 @@ public class Train
 
     private List<Animal> GetAnimalsSortedByLargeHerbivores()
     {
-        List<Animal> animalsSortByLargeHerbivores = new List<Animal>(_animals);
+        List<Animal> animalsSortByLargeHerbivores = new(_animals);
         List<Animal> carnivores = animalsSortByLargeHerbivores.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
         List<Animal> herbivores = animalsSortByLargeHerbivores.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
         return herbivores.Concat(carnivores).ToList();
@@ -32,7 +32,7 @@ public class Train
 
     private List<Animal> GetAnimalsSortedByLargeCarnivores()
     {
-        List<Animal> animalsSortedByLargeCarnivores = new List<Animal>(_animals);
+        List<Animal> animalsSortedByLargeCarnivores = new(_animals);
         List<Animal> carnivores = animalsSortedByLargeCarnivores.Where(a => a.DietType == DietTypes.Carnivore).OrderByDescending(a => a.Size).ToList();
         List<Animal> herbivores = animalsSortedByLargeCarnivores.Where(a => a.DietType == DietTypes.Herbivore).OrderByDescending(a => a.Size).ToList();
         return carnivores.Concat(herbivores).ToList();
@@ -40,12 +40,12 @@ public class Train
 
     private List<Wagon> GetOptimizedWagons(IReadOnlyList<Animal> readOnlyAnimals)
     {
-        List<Wagon> wagons = new List<Wagon>();
-        List<Animal> animals = new List<Animal>(readOnlyAnimals);
+        List<Wagon> wagons = new();
+        List<Animal> animals = new(readOnlyAnimals);
 
         while (animals.Count != 0)
         {
-            Wagon wagon = new Wagon();
+            Wagon wagon = new();
 
             foreach (Animal animal in animals.ToList())
             {

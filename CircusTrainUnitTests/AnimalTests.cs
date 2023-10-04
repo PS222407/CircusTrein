@@ -1,6 +1,5 @@
 ﻿using CircusTrain.Classes;
 using CircusTrain.Enums;
-using NUnit.Framework;
 
 namespace CircusTrainUnitTests;
 
@@ -15,7 +14,7 @@ public class AnimalTests
     public void HasConflictWith_ReturnsTrue()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
 
@@ -30,10 +29,10 @@ public class AnimalTests
     public void HasConflictWith_ReturnsFalse()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Medium);
-        Animal animal2 = new Animal();
+        Animal animal2 = new();
         animal2.SetDietType(DietTypes.Herbivore);
         animal2.SetSize(Size.Large);
 

@@ -6,13 +6,12 @@ using CircusTrain.Classes;
 namespace CircusTrein;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly List<Animal> _animals = new();
     private Train _train;
-
-    private List<Animal> _animals = new();
 
     public MainWindow()
     {
@@ -21,10 +20,10 @@ public partial class MainWindow : Window
 
     private void ButtonBase_OnClick_Add_Animal(object sender, RoutedEventArgs e)
     {
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.AssignRandomProperties();
         _animals.Add(animal);
-        
+
         ListBoxAnimals.Items.Add(animal);
     }
 
@@ -38,7 +37,7 @@ public partial class MainWindow : Window
 
         foreach (Wagon wagon in wagons)
         {
-            ListBox wagonUi = new ListBox();
+            ListBox wagonUi = new();
 
             wagonUi.Items.Add(wagon);
             foreach (Animal animal in wagon.Animals)

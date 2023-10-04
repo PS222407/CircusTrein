@@ -7,21 +7,21 @@ public class Wagon : IWagon
     private const int MaxAnimalPoints = 10;
 
     private static int _nextId;
-    
-    private int Id { get; }
 
-    public IReadOnlyList<Animal> Animals => _animals;
-    
-    private List<Animal> _animals = new();
-
-    private int Points
-    {
-        get { return _animals.Sum(a => (int)a.Size!); }
-    }
+    private readonly List<Animal> _animals = new();
 
     public Wagon()
     {
         Id = Interlocked.Increment(ref _nextId);
+    }
+
+    private int Id { get; }
+
+    public IReadOnlyList<Animal> Animals => _animals;
+
+    private int Points
+    {
+        get { return _animals.Sum(a => (int)a.Size!); }
     }
 
     public bool IsRoomForAnimal(Animal animal)
@@ -49,10 +49,10 @@ public class Wagon : IWagon
         {
             _animals.Add(animal);
         }
-        
+
         return canAddAnimal;
     }
-    
+
     public override string ToString()
     {
         return $"Wagon ID: {Id}; Animal count = {Animals.Count}; Points = {Points};";

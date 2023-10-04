@@ -5,19 +5,13 @@ namespace CircusTrain.Classes;
 
 public class Animal : IAnimal
 {
-    static int _nextId;
+    private static int _nextId;
 
-    private int Id { get; }
-
-    public DietTypes? DietType { get; private set; }
-
-    public Size? Size { get; private set; }
-    
     public Animal()
     {
         Id = Interlocked.Increment(ref _nextId);
     }
-    
+
     public Animal(Size size, DietTypes dietType)
     {
         Id = Interlocked.Increment(ref _nextId);
@@ -26,9 +20,30 @@ public class Animal : IAnimal
         DietType = dietType;
     }
 
+    private int Id { get; }
+
+    public DietTypes? DietType { get; private set; }
+
+    public Size? Size { get; private set; }
+
+    public bool HasConflictWith(Animal animal)
+    {
+        if (animal.DietType == DietTypes.Carnivore && (int)animal.Size! >= (int)Size!)
+        {
+            return true;
+        }
+
+        if (DietType == DietTypes.Carnivore && (int)Size! >= (int)animal.Size!)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void AssignRandomProperties()
     {
-        Random random = new Random();
+        Random random = new();
 
         Array dietTypes = Enum.GetValues(typeof(DietTypes));
         Array sizeTypes = Enum.GetValues(typeof(Size));
@@ -45,21 +60,6 @@ public class Animal : IAnimal
     public void SetSize(Size size)
     {
         Size = size;
-    }
-
-    public bool HasConflictWith(Animal animal)
-    {
-        if (animal.DietType == DietTypes.Carnivore && (int)animal.Size! >= (int)Size!)
-        {
-            return true;
-        }
-
-        if (DietType == DietTypes.Carnivore && (int)Size! >= (int)animal.Size!)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public override string ToString()
