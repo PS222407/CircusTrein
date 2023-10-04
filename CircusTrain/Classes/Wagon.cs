@@ -24,11 +24,6 @@ public class Wagon : IWagon
         Id = Interlocked.Increment(ref _nextId);
     }
 
-    public void AddAnimal(Animal animal)
-    {
-        _animals.Add(animal);
-    }
-
     public bool IsRoomForAnimal(Animal animal)
     {
         return Points + (int)animal.Size! <= MaxAnimalPoints;
@@ -52,7 +47,7 @@ public class Wagon : IWagon
         bool canAddAnimal = IsRoomForAnimal(animal) && IsSafeForAnimal(animal);
         if (canAddAnimal)
         {
-            AddAnimal(animal);
+            _animals.Add(animal);
         }
         
         return canAddAnimal;

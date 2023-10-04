@@ -18,10 +18,10 @@ public class WagonTests
     public void IsRoomForAnimal_ReturnsTrue()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
-        _wagon.AddAnimal(animal);
+        _wagon.TryAddAnimal(animal);
 
         // Act
         bool result = _wagon.IsRoomForAnimal(animal);
@@ -34,14 +34,13 @@ public class WagonTests
     public void IsRoomForAnimal_ReturnsFalse()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
-        _wagon.AddAnimal(animal);
-        _wagon.AddAnimal(animal);
+        _wagon.TryAddAnimal(animal);
 
         // Act
-        bool result = _wagon.IsRoomForAnimal(animal);
+        bool result = _wagon.TryAddAnimal(animal);
 
         // Assert
         Assert.That(result, Is.EqualTo(false));
@@ -51,11 +50,11 @@ public class WagonTests
     public void IsSafeForAnimal_ReturnsTrue()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Medium);
-        _wagon.AddAnimal(animal);
-        Animal animal2 = new Animal();
+        _wagon.TryAddAnimal(animal);
+        Animal animal2 = new();
         animal2.SetDietType(DietTypes.Herbivore);
         animal2.SetSize(Size.Large);
 
@@ -70,10 +69,10 @@ public class WagonTests
     public void IsSafeForAnimal_ReturnsFalse()
     {
         // Assign
-        Animal animal = new Animal();
+        Animal animal = new();
         animal.SetDietType(DietTypes.Carnivore);
         animal.SetSize(Size.Large);
-        _wagon.AddAnimal(animal);
+        _wagon.TryAddAnimal(animal);
 
         // Act
         bool result = _wagon.IsSafeForAnimal(animal);
